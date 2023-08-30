@@ -84,8 +84,6 @@ def read(msg):
 
     if msg == "/menu":
         send(showMenu())
-    elif msg == "/events":
-        send(readEvents())
     elif msg == "/pick":
         send(str(random.randint(1, 10)))
     elif msg == "/flip":
@@ -109,5 +107,4 @@ def send(msg):
         "bot_id": os.getenv("BOT_ID"),
         "text": msg,
     }
-    # sends message to GroupMe
     r = requests.post(url, json=data)
