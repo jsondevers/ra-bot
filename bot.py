@@ -35,34 +35,16 @@ def receive():
     return "ok", 200
 
 
-# happens everyday, using the timer at the bottom
-def update():
-    getFood()
-    goodMorning()
-
-
 def goodMorning():
     send("Good Morning Montgomery Hall")
 
 
 def showMenu():
     return """RA BOT MENU: \n
-             You can send the bot a command! \n
-             Upcoming Events: /events \n
-             Is Jason on Duty right now?: /duty? \n
+             Type in a command! \n
              Pick a num between 1-10: /pick \n
              Flip a coin: /flip \n
              Phone Numbers: /numbers \n"""
-
-
-def readEvents():
-    with open("events.txt") as f:
-        send("".join(f.readlines()))
-
-
-def readFood():
-    with open("food.txt") as f:
-        send("".join(f.readlines()))
 
 
 # scrapes data from umd dining menu
@@ -104,9 +86,6 @@ def read(msg):
         send(showMenu())
     elif msg == "/events":
         send(readEvents())
-    elif msg == "/duty?":
-        # pulls data from Google Calendar API
-        send("No")
     elif msg == "/pick":
         send(str(random.randint(1, 10)))
     elif msg == "/flip":
@@ -116,18 +95,11 @@ def read(msg):
         else:
             send("heads")
     elif msg == "/numbers":
-        # numbers() -> not shown for sake of confidentality
-        send(numbers)
-    elif msg == "/food":
-        readFood()
-    elif msg == "/tendies":
-        food = getFood()
-        if chicken_tenders(food):
-            send("CHICKEN TENDERS @ 12")
-        else:
-            send("Sorry, not today")
-
-    return True
+        send(
+            """Jason: 240-340-3777\n
+                UMPD: 301-405-3555\n
+                4-Work: 301-314-9675"""
+        )
 
 
 def send(msg):
