@@ -108,3 +108,6 @@ def send(msg):
         "text": msg,
     }
     r = requests.post(url, json=data)
+
+
+# test
